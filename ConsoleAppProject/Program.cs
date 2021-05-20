@@ -1,4 +1,5 @@
-﻿using ConsoleAppProject.App03;
+﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -10,26 +11,38 @@ namespace ConsoleAppProject
     /// to start Apps 01 to 05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Derek Peacock 14/12/2020
+    /// Abbas Raziq 15/05/2021
     /// </summary>
     public static class Program
     {
+        private static int choice;
         public static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            
-            Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("BNU CO453 Applications Programming Jan start");
+            Console.WriteLine("Abbas Raziq");
             Console.WriteLine();
 
-            // Using an extension method for each enumeration
-            Console.WriteLine("Using MyEnum Extension Method!\n");
-            Console.WriteLine("MyEnum Value = " + MyEnum.FirstValue);
-            Console.WriteLine("MyEnum Friendly Value = " + MyEnum.FirstValue.EnumValue());
-            Console.WriteLine();
+            string[] choices = new string[]
+            {
+                "Distance Coverter",
+            };
 
-            // Using an extension method for any enumeration
-            StudentGrades grades = new StudentGrades();
-            grades.TestGradesEnumeration();
+            ConsoleHelper.OutputTitle("Please select the application you wish to use ");
+            choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.Run();
+            }
+            else if (choice == 2)
+            {
+                BMICalculator calculator = new BMICalculator();
+                calculator.Run();
+            }
         }
     }
 }
