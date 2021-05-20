@@ -13,7 +13,7 @@ namespace ConsoleAppProject.App02
     /// Abbas Raziq version 0.1
     /// </author>
     /// 
-    public class BMI_Calculator
+    public class BMICalculator
     {
         public const string IMPERIAL = "Imperial";
         public const string METRIC = "Metric";
@@ -26,7 +26,7 @@ namespace ConsoleAppProject.App02
         public const int IMPERIAL_FACTOR = 703;
 
         public double BMI_Index { get; set; }
-        public BMI_Categories_Category  { get; set; }
+        public WeightCategories Category { get; set; }
 
         public double Height { get; set; }
         public double Weight { get; set; }
@@ -154,39 +154,39 @@ namespace ConsoleAppProject.App02
         {
             if (BMI_Index < 18.50)
             {
-                Category = BMI_Categories.UnderWeight;
+                Category = WeightCategories.UnderWeight;
             }
             else if (BMI_Index > 18.5 && BMI_Index < 24.9)
             {
-                Category = BMI_Categories.NormalWeight;
+                Category = WeightCategories.NormalWeight;
             }
             else if (BMI_Index > 25.0 && BMI_Index < 29.9)
             {
-                Category = BMI_Categories.OverWeight;
+                Category = WeightCategories.OverWeight;
             }
             else if (BMI_Index > 30.00 && BMI_Index < 34.9)
             {
-                Category = BMI_Categories.ObeseI;
+                Category = WeightCategories.ObeseI;
             }
             else if (BMI_Index > 35.0 && BMI_Index < 39.9)
             {
-                Category = BMI_Categories.ObeseII;
+                Category = WeightCategories.ObeseII;
             }
             else if (BMI_Index >= 40.0)
             {
-                Category = BMI_Categories.ObeseIII;
+                Category = WeightCategories.ObeseIII;
             }
 
-            ConsoleHelper.OutputBlue($"\n Your BMI index is {BMI_Index: 0.00}");
-            ConsoleHelper.OutputBlue($"Your BMI status is {Status}");
+            ConsoleHelper.OutputYellow($"\n Your BMI index is {BMI_Index: 0.00}");
+            ConsoleHelper.OutputYellow($"Your BMI status is {Category}");
 
-            ConsoleHelper.OutputGreen("\n If you are Black, Asian, or other minority " +
+            ConsoleHelper.OutputRed("\n If you are Black, Asian, or other minority " +
                 "\n ethnic groups, you have a higher risk have a " +
                 "\n higher risk of developing some long-term " +
                 "\n conditions, such as type 2 diabetes. " +
                 "\n These adults with a BMI of:");
 
-            ConsoleHelper.OutputBlue("\n 23.0 or more are at increased risk " +
+            ConsoleHelper.OutputYellow("\n 23.0 or more are at increased risk " +
                 "\n 27.5 or more are at high risk");
         }
 
