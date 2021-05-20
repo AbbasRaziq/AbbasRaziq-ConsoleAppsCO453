@@ -4,16 +4,17 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// This requires the user to enter their preferred distance conversion.
-    /// It operates by selecting the measurement unit, then selecting the 
-    /// desired unit result, inputting the value for conversion, performing
-    /// the conversion, and finally providing the performance of the 
-    /// conversion selected.
+    /// The user will use the Distance Converter to convert 
+    /// one distance to another. The user has three options: 
+    /// feet, metres, and miles. The user can select one of 
+    /// three options, which is then transformed into the desired 
+    /// component using another set of three options identical 
+    /// to the first.
     /// </summary>
     /// <author>
-    /// Abbas Raziq version 0.1
+    /// Abbas Raziq 02/05/2021
     /// </author>
-    /// 
+
     public class DistanceConverter
     {
         public const int FEET_IN_MILES = 5280;
@@ -33,10 +34,10 @@ namespace ConsoleAppProject.App01
         public string ToUnit { get; set; }
 
         /// <summary>
-        /// If the user does not want to convert another distance, this method
-        /// would run the programme, produce a heading, and exit the programme.
+        /// If the user does not want to convert another distance, 
+        /// this method will run the programme, produce a heading, 
+        /// and close the programme.
         /// </summary>
-        /// 
         public void Run()
         {
             bool repeat = true;
@@ -49,12 +50,11 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// This method returns the heading and prompts the user to choose a 
-        /// distance unit to convert from and convert to. It informs the user 
-        /// that the distance is being transformed, measures the conversion, 
-        /// and displays the outcome to the user.
+        /// This method returns the heading and allows the user to 
+        /// choose a distance unit to convert from and to. It informs 
+        /// the consumer of the distance being converted, performs the 
+        /// conversion, and displays the result.
         /// </summary>
-        /// 
         public void ConvertDistance()
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -80,13 +80,13 @@ namespace ConsoleAppProject.App01
             ConsoleHelper.OutputTitle($"\n Converting {FromUnit} to {ToUnit} ");
             CalculateDistance();
 
-            DistanceOutput();
+            OutputDistance();
         }
+
         /// <summary>
-        /// This method performs the required calculations from the selected 
-        /// input unit to the selected output unit.
+        /// This method performs the required calculations 
+        /// from the selected input unit to the selected output unit.
         /// </summary>
-        /// 
         public void CalculateDistance()
         {
             if (FromUnit == MILES && ToUnit == FEET)
@@ -116,10 +116,9 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// This method conducts the required calculations from the chosen 
-        /// input unit to the chosen output unit.
+        /// This approach shows a list of measurement units from 
+        /// which the user may choose to convert.
         /// </summary>
-        ///
         private static string DisplayChoices(string prompt)
         {
             Console.WriteLine("\n");
@@ -134,11 +133,10 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// This method reads the input unit and converts it to a 
-        /// double-precision floating-point integer.
+        /// This method reads the input unit and returns the conversion
+        /// to a double-precision floating-point number.
         /// </summary>
-        /// 
-        private double DistanceInput(string prompt)
+        private double InputDistance(string prompt)
         {
             Console.Write(prompt);
             string value = Console.ReadLine();
@@ -146,73 +144,15 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// This approach informs the consumer that the unit and measurement
-        /// they selected have been translated to the desired unit and measurement.
+        /// This method informs the consumer that the unit and measurement
+        /// they selected have been converted to the desired unit and measurement.
         /// </summary>
-        /// 
-        private void DistanceOutput()
+        private void OutputDistance()
         {
             Console.WriteLine($"\n {FromDistance} {FromUnit}" +
                 $" is {ToDistance} {ToUnit}!");
+
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
 }
