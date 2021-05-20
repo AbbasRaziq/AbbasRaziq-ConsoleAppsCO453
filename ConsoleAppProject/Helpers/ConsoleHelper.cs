@@ -11,7 +11,7 @@ namespace ConsoleAppProject.Helpers
     /// There are methods for outputting a main heading
     /// and a title.
     /// <author>
-    /// Derek Peacock 2021
+    /// Evan Castro 01/05/2021
     /// </author>
     /// </summary>
     public static class ConsoleHelper
@@ -30,7 +30,7 @@ namespace ConsoleAppProject.Helpers
 
             // Get the user's choice
 
-            int choiceNo = (int)InputNumber("\n Please enter your choice > ", 
+            int choiceNo = (int)InputNumber("\n Please enter your choice > ",
                                             1, choices.Length);
             return choiceNo;
         }
@@ -56,7 +56,7 @@ namespace ConsoleAppProject.Helpers
         /// will return any number as a double.  Any exception
         /// will generate an error message.
         /// </summary>
-        public static double InputNumber(string prompt)
+        public static double InputNumberDouble(string prompt)
         {
             double number = 0;
             bool isValid;
@@ -74,7 +74,7 @@ namespace ConsoleAppProject.Helpers
                 catch (Exception)
                 {
                     isValid = false;
-                    Console.WriteLine(" INVALID NUMBER!");
+                    Console.WriteLine("Error!");
                 }
 
             } while (!isValid);
@@ -98,12 +98,12 @@ namespace ConsoleAppProject.Helpers
 
             do
             {
-                number = InputNumber(prompt);
+                number = InputNumberDouble(prompt);
 
                 if (number < min || number > max)
                 {
                     isValid = false;
-                    Console.WriteLine($"Number must be between {min} and {max}");
+                    Console.WriteLine($" Number must be between {min} and {max}");
                 }
                 else isValid = true;
 
@@ -123,14 +123,27 @@ namespace ConsoleAppProject.Helpers
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("\n ---------------------------------");
-            Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Derek Peacock           ");
-            Console.WriteLine(" ---------------------------------" +
-                "\n");
+            Console.WriteLine(" \n  -------------------------------------------");
+            Console.WriteLine($" {heading} | By Abbas Raziq");
+            Console.WriteLine("  -------------------------------------------");
+            Console.WriteLine("");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
+
+
+        public static void OutputYellow(string line)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($" {line}");
+        }
+
+        public static void OutputRed(string line)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($" {line}");
+        }
+
 
         /// <summary>
         /// This method will display a green title underlined
@@ -138,18 +151,54 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         public static void OutputTitle(string title)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine($"\n {title}");
             Console.Write(" ");
 
-            for(int count = 0; count <= title.Length; count++)
+            for (int count = 0; count <= title.Length; count++)
             {
                 Console.Write("-");
             }
 
             Console.WriteLine("\n");
             Console.ResetColor();
+        }
+
+        /// <summary>
+        /// This method will give the user the option to carry
+        /// out another calculation by saying yes or no
+        /// </summary>
+        public static bool WantToRepeat()
+        {
+            bool repeat = true;
+            while (repeat)
+            {
+                Console.WriteLine("\n Would you like to choose"
+                    + " another calculation? yes/no? > ");
+                string choice = Console.ReadLine();
+
+                if (choice.ToLower().Contains("y"))
+                {
+                    Console.WriteLine(" You have selected yes");
+                    repeat = false;
+                    return true;
+                }
+
+                else if (choice.ToLower().Contains("n"))
+                {
+                    Console.WriteLine(" You entered no, exiting the app, thank you!");
+                    repeat = false;
+                    return false;
+                }
+
+                else
+                {
+                    Console.WriteLine(" Error: invalid input. Please try again");
+                }
+            }
+            return false;
+
         }
     }
 }
